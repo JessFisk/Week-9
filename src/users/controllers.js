@@ -1,5 +1,7 @@
 const User = require("./model")
 
+
+/////////////////////////////////////////////////////////
 const registerUser = async (req, res) => {
     try {
         const user = await User.create(req.body)
@@ -16,23 +18,31 @@ const registerUser = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-
+/////////////////////////////////////////////////////////
+// {
+//     "username": "jess",
+//     "email": "jess@email.com",
+//     "password": "password"
+// }
+/////////////////////////////////////////////////////////
 const login = async (req, res) => {
     try {
         // package user to exclude password or hashed password
         // send user data back in response
-
-        res
-            .status(201).json({
-                message: "success", user: { username: req.user.username, email: req.user.email },
-            });
-
+        res.status(201).json({message: "success", user: { username: req.user.username, email: req.user.email },
+        });
     } catch (error) {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 };
+/////////////////////////////////////////////////////////
 
+// {
+//     "username": "jess",
+//     "password": "password"
+// }
 
+/////////////////////////////////////////////////////////
 module.exports = {
     registerUser,
     login,

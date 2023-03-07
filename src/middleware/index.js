@@ -15,9 +15,20 @@ const hashPass = async (req, res, next) => {
     )
   };
 };
-
+//////////////////////////////////////////////////////////////
 const comparePass = async (req, res, next) => {
   try {
+
+    if (!req.body.password) {
+      const error = new Error("No password");
+      res.status(500).json({ errorMessage: error.message, error: error });
+    }
+
+    if (!req.body.username) {
+    const error = new Error("No unsername");
+    res.status(500).json({ errorMessage: error.message, error: error });
+    }
+
     req.user = await User.findOne({ where: { username: req.body.username } });
     const match = await bcrypt.compare(req.body.password, req.user.password);
 
