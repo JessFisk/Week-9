@@ -1,6 +1,4 @@
 const Book = require("./model")
-// const jwt = require("jsonwebtoken")
-
 
 const addBook = async (req, res) => {
     try {
@@ -16,7 +14,6 @@ const addBook = async (req, res) => {
     }
 }
 /////////////////////////////////////////////////////
-
 const getAllBooks = async (req, res) => {
     try {
         const allBooks = await Book.findAll();
@@ -26,7 +23,6 @@ const getAllBooks = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-
 /////////////////////////////////////////////////////
 const getSingleBookByTitle = async (req, res) => {
     try {
@@ -37,7 +33,6 @@ const getSingleBookByTitle = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-
 ////////////////////////////////////////////////////
 const deleteBook = async (req, res) => {
     try {
@@ -52,9 +47,7 @@ const deleteBook = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-
 ////////////////////////////////////////////////////
-
 const updateBook = async (req, res) => {
     try {
         if (!req.authCheck) {
@@ -68,7 +61,6 @@ const updateBook = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-
 //////////////////////////////////////////////////////////
 // {
 //     "title": "BookTitle",
@@ -76,7 +68,6 @@ const updateBook = async (req, res) => {
 //     "updateValue": "x"
 // }
 //////////////////////////////////////////////////////////
-
 module.exports = {
     addBook,
     getAllBooks,
