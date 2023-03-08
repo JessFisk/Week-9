@@ -65,7 +65,7 @@ const tokenCheck = async (req, res, next) => {
   try {
     const token = req.header("Authorization");
 
-    const decodedToken = await jwt.verify(token, process.env.SECRET);
+    const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
 
     const user = await User.findOne({ where: { id: decodedToken.id } });
 
