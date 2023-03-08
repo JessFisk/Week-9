@@ -28,7 +28,7 @@ const registerUser = async (req, res) => {
 /////////////////////////////////////////////////////////
 const login = async (req, res) => {
     try {
-        const token = await jwt.sign({ id: req.user.id }, process.env.SECRET);
+        const token = await jwt.sign({ id: req.user.id }, process.env.SECRET_KEY);
         console.log ("token: ", token);
 
         res.status(201).json({
