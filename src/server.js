@@ -24,3 +24,6 @@ app.listen(port, () => {
     syncTables();
     console.log(`server is listening on port ${port}`);
 })
+
+
+
