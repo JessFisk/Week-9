@@ -17,8 +17,8 @@ const addAuthor = async (req, res) => {
 }
 /////////////////////////////////////////////////////////
 // {
-//     "authorName":"name"
-//   }
+//   "authorName":"name"
+// }
 ///////////////////////////////////////////////////////
 const getAuthorAndBooks = async (req, res) => {
     try{
