@@ -1,8 +1,8 @@
-const {Router} = require("express");
+const { Router } = require("express");
 
 const authorRouter = Router();
 
-const {addAuthor, getAuthorAndBooks} = require("./controllers");
+const { addAuthor, getAuthorAndBooks } = require("./controllers");
 const { tokenCheck } = require("../middleware")
 
 authorRouter.post("/authors/addauthor", tokenCheck, addAuthor);

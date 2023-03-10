@@ -1,8 +1,8 @@
-const {Router} = require("express");
+const { Router } = require("express");
 
 const genreRouter = Router();
 
-const {addGenre, getAllBooks} = require("./controllers");
+const { addGenre, getAllBooks } = require("./controllers");
 const { tokenCheck } = require("../middleware")
 
 genreRouter.post("/genres/addgenre", tokenCheck, addGenre);

@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken")
 const saltRounds = process.env.SALT_ROUNDS;
 
 
+
+
 const hashPass = async (req, res, next) => {
   try {
     // const hashedPass = await bcrypt.hash(req.body.password, saltRounds)
@@ -19,18 +21,26 @@ const hashPass = async (req, res, next) => {
   };
 };
 
-//////////////////////////////////////////////////////////////
+
+
+
+
+
+
 const comparePass = async (req, res, next) => {
   try {
 
     if (!req.body.password) {
       const error = new Error("No password");
       res.status(500).json({ errorMessage: error.message, error: error });
+      return
     }
+
 
     if (!req.body.username) {
       const error = new Error("No unsername");
       res.status(500).json({ errorMessage: error.message, error: error });
+      return
     }
 
     req.user = await User.findOne({ where: { username: req.body.username } });
@@ -49,13 +59,16 @@ const comparePass = async (req, res, next) => {
 
 
 
-/////////////////////////////////////////////////////////////
+
+
+
+
 const tokenCheck = async (req, res, next) => {
   try {
     const token = req.header("Authorization");
 
     const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
-
+    console.log(decodedToken)
     const user = await User.findOne({ where: { id: decodedToken.id } });
 
     if (!user) {
@@ -70,6 +83,9 @@ const tokenCheck = async (req, res, next) => {
     res.status(501).json({ errorMessage: error.message, error: error });
   }
 }
+
+
+
 
 
 module.exports = {
