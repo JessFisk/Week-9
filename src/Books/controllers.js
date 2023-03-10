@@ -1,5 +1,6 @@
 const Book = require("./model")
 
+
 const addBook = async (req, res) => {
     try {
         if (!req.authCheck) {
@@ -13,7 +14,12 @@ const addBook = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-/////////////////////////////////////////////////////
+
+
+
+
+
+
 const getAllBooks = async (req, res) => {
     try {
         const allBooks = await Book.findAll();
@@ -23,7 +29,12 @@ const getAllBooks = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-/////////////////////////////////////////////////////
+
+
+
+
+
+
 const getSingleBookByTitle = async (req, res) => {
     try {
         const getSingleBook = await Book.findOne({ where: { title: req.params.title } });
@@ -33,7 +44,12 @@ const getSingleBookByTitle = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-////////////////////////////////////////////////////
+
+
+
+
+
+
 const deleteBook = async (req, res) => {
     try {
         if (!req.authCheck) {
@@ -47,7 +63,12 @@ const deleteBook = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-////////////////////////////////////////////////////
+
+
+
+
+
+
 const updateBook = async (req, res) => {
     try {
         if (!req.authCheck) {
@@ -61,13 +82,17 @@ const updateBook = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 }
-//////////////////////////////////////////////////////////
+
+
+
 // {
 //     "title": "BookTitle",
 //     "updateKey": "ThingYouWantUpdating",
 //     "updateValue": "x"
 // }
-//////////////////////////////////////////////////////////
+
+
+
 module.exports = {
     addBook,
     getAllBooks,

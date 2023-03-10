@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken")
 const saltRounds = process.env.SALT_ROUNDS;
 
 
+
+
 const hashPass = async (req, res, next) => {
   try {
     // const hashedPass = await bcrypt.hash(req.body.password, saltRounds)
@@ -19,7 +21,12 @@ const hashPass = async (req, res, next) => {
   };
 };
 
-//////////////////////////////////////////////////////////////
+
+
+
+
+
+
 const comparePass = async (req, res, next) => {
   try {
 
@@ -37,8 +44,6 @@ const comparePass = async (req, res, next) => {
     }
 
     req.user = await User.findOne({ where: { username: req.body.username } });
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!")
-    console.log(req.user)
     const match = await bcrypt.compare(req.body.password, req.user.password);
 
     if (!match) {
@@ -54,16 +59,16 @@ const comparePass = async (req, res, next) => {
 
 
 
-/////////////////////////////////////////////////////////////
+
+
+
+
 const tokenCheck = async (req, res, next) => {
   try {
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    console.log(req.header)
-
     const token = req.header("Authorization");
 
     const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
-  console.log(decodedToken)
+    console.log(decodedToken)
     const user = await User.findOne({ where: { id: decodedToken.id } });
 
     if (!user) {
@@ -78,6 +83,9 @@ const tokenCheck = async (req, res, next) => {
     res.status(501).json({ errorMessage: error.message, error: error });
   }
 }
+
+
+
 
 
 module.exports = {
