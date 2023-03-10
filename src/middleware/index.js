@@ -26,14 +26,19 @@ const comparePass = async (req, res, next) => {
     if (!req.body.password) {
       const error = new Error("No password");
       res.status(500).json({ errorMessage: error.message, error: error });
+      return
     }
+
 
     if (!req.body.username) {
       const error = new Error("No unsername");
       res.status(500).json({ errorMessage: error.message, error: error });
+      return
     }
 
     req.user = await User.findOne({ where: { username: req.body.username } });
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!")
+    console.log(req.user)
     const match = await bcrypt.compare(req.body.password, req.user.password);
 
     if (!match) {
@@ -52,10 +57,13 @@ const comparePass = async (req, res, next) => {
 /////////////////////////////////////////////////////////////
 const tokenCheck = async (req, res, next) => {
   try {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    console.log(req.header)
+
     const token = req.header("Authorization");
 
     const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
-
+  console.log(decodedToken)
     const user = await User.findOne({ where: { id: decodedToken.id } });
 
     if (!user) {

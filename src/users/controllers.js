@@ -28,6 +28,14 @@ const registerUser = async (req, res) => {
 /////////////////////////////////////////////////////////
 const login = async (req, res) => {
     try {
+        if (req.authCheck) {
+            res.status(201).json({
+                message: "success", user: { username: req.authCheck.username, email: req.authCheck.email },
+            });
+            return
+        }
+
+
         const token = await jwt.sign({ id: req.user.id }, process.env.SECRET_KEY);
         console.log ("token: ", token);
 
@@ -39,7 +47,7 @@ const login = async (req, res) => {
         res.status(501).json({ errorMessage: error.message, error: error });
     }
 };
-/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 // {
 //     "username": "jess",

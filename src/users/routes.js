@@ -10,9 +10,8 @@ userRouter.post("/users/register", hashPass, registerUser);
 userRouter.post("/users/login", comparePass, login);
 
 
-
+userRouter.get("/users/authcheck", tokenCheck, login);
 userRouter.get("/users/getallusers", tokenCheck, getAllUsers)
-
 
 module.exports = userRouter;
 
