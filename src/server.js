@@ -31,7 +31,8 @@ const syncTables = () => {
     Book.belongsTo(Favourite);
     User.belongsTo (Favourite);
 
-    User.sync({ alter: true, force: false });
+    User.sync();
+    // User.sync({ alter: true, force: false });
     Book.sync();
     Genre.sync();
     Author.sync();
