@@ -80,7 +80,16 @@ const getAllUsers = async (req, res) => {
 };
 
 
-
+const updateUserName = async (req, res) => {
+    try {
+      await User.update({ [req.body.username]: req.body.updateValue }, { where: { username: req.body.username } });
+        res.status(201).json({ message: "success", username: updateUserName });
+      
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ error: error.message });
+    }
+  };
 
 
 
@@ -90,4 +99,5 @@ module.exports = {
     registerUser,
     login,
     getAllUsers,
+    updateUserName,
 }

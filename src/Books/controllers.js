@@ -35,6 +35,7 @@ const getAllBooks = async (req, res) => {
 
 
 
+
 const getSingleBookByTitle = async (req, res) => {
     try {
         const getSingleBook = await Book.findOne({ where: { title: req.params.title } });

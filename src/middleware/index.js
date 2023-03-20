@@ -36,7 +36,6 @@ const comparePass = async (req, res, next) => {
       return
     }
 
-
     if (!req.body.username) {
       const error = new Error("No unsername");
       res.status(500).json({ errorMessage: error.message, error: error });
